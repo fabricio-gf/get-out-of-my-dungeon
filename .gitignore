@@ -34,3 +34,5 @@ ExportedObj/
 *.unitypackage
 *.app
 *.exe
+Assets/VSCode.meta
+Assets/VSCode
