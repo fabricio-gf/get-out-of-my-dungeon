@@ -6,6 +6,6 @@ public class Skeleton : Minion
 {
     public override void Action()
     {
-        Debug.Log("Foi");
+        Debug.Log("Skeleton");
     }
 }

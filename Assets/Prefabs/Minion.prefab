@@ -22,7 +22,7 @@ GameObject:
   - component: {fileID: 33308304225133496}
   - component: {fileID: 23691701995267256}
   - component: {fileID: 65554069489426580}
-  - component: {fileID: 114828261384655584}
+  - component: {fileID: 114242424359424386}
   m_Layer: 0
   m_Name: Minion
   m_TagString: Untagged
@@ -97,7 +97,7 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
---- !u!114 &114828261384655584
+--- !u!114 &114242424359424386
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_CorrespondingSourceObject: {fileID: 0}
@@ -105,7 +105,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 1673003980369868}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 47d0864ccd605814480d54e6ff9bb24a, type: 3}
+  m_Script: {fileID: 11500000, guid: cffb678df00fb4a7aba4226dc604a801, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  isClicked: 0
+  reload: 0

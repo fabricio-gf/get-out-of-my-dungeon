@@ -5,15 +5,17 @@ using UnityEngine;
 public class FriendlySpawner : MonoBehaviour
 {
     [SerializeField] private GameObject MinionPrefab;
+    [SerializeField] private float snapValue = 1;
     private GameObject Minion;
-    private int instanceState = 0;
     private Vector3 mousePos;
     private Minion MinionScript;
+    private float snapInverse;
+    private int instanceState = 0;
 
     // Use this for initialization
     void Start()
     {
-
+        snapInverse = 1 / snapValue;
     }
 
     // Update is called once per frame
@@ -28,6 +30,7 @@ public class FriendlySpawner : MonoBehaviour
             {
                 instanceState = 0;
                 MinionScript.InGame = true;
+                SnapOnGrid(Minion);
             }
         }
     }
@@ -42,4 +45,12 @@ public class FriendlySpawner : MonoBehaviour
         }
     }
 
+    void SnapOnGrid(GameObject minion)
+    {
+        float x, y, z;
+        x = Mathf.Round(minion.transform.position.x * snapInverse) / snapInverse;
+        y = Mathf.Round(minion.transform.position.y * snapInverse) / snapInverse;
+        z = 10f;
+        minion.transform.position = new Vector3(x, y, z);
+    }
 }
