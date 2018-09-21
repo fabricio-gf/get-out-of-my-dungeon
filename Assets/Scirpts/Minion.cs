@@ -5,6 +5,7 @@ using UnityEngine;
 public class Minion : MonoBehaviour {
 
 	public bool isClicked = false;
+	public bool inGame = false;
 
 	// Use this for initialization
 	void Start () {
