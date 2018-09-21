@@ -23,7 +23,7 @@ GameObject:
   - component: {fileID: 23691701995267256}
   - component: {fileID: 65554069489426580}
   m_Layer: 0
-  m_Name: Cube
+  m_Name: Minion
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
