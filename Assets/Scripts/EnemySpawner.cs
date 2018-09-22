@@ -4,6 +4,11 @@ using UnityEngine;
 
 public class EnemySpawner : MonoBehaviour {
 
+	[SerializeField] private float  SpawnTimer = 5f;
+	private float timer = 0;
+	public GameObject EnemyPrefab;
+	private GameObject Enemy;
+	private Vector3 enemyStartingPos;
 	// Use this for initialization
 	void Start () {
 		
@@ -11,6 +16,13 @@ public class EnemySpawner : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-		
+		timer+=Time.deltaTime;
+		if(timer>=SpawnTimer){
+			timer-=SpawnTimer;
+			Enemy = Instantiate(EnemyPrefab);
+			enemyStartingPos = transform.position;
+			enemyStartingPos.z = 10f;
+			Enemy.transform.position = enemyStartingPos;
+		}
 	}
 }

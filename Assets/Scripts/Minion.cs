@@ -34,7 +34,7 @@ public abstract class Minion : MonoBehaviour
             if (timer >= reload)
             {
                 Action();
-                timer = 0f;
+                timer -= reload;
             }
             else
             {

@@ -96,6 +96,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 55653eba84911ca4185cd9d2ac068bae, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  SpawnTimer: 5
+  EnemyPrefab: {fileID: 1201346005792278, guid: dc8c7b67e5d60df4ebd6a04c35e18091,
+    type: 2}
 --- !u!135 &135714795468510768
 SphereCollider:
   m_ObjectHideFlags: 1
