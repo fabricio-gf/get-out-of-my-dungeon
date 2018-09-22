@@ -7,6 +7,10 @@ public class Skeleton : Minion
     [SerializeField] private GameObject attack;
     private int direction = -1;
 
+    void Start(){
+        hp = 80;
+    }
+
     public int Direction
     {
         get { return direction; }

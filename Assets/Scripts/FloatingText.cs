@@ -14,7 +14,6 @@ public class FloatingText : MonoBehaviour
     {
         direction = Random.Range(-1, 1);
         if (direction == 0) direction = 1;
-        Debug.Log(direction);
     }
 
     void Update()
