@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Tilemaps;
 
 public class FriendlySpawner : MonoBehaviour
 {
@@ -13,6 +14,8 @@ public class FriendlySpawner : MonoBehaviour
     private Minion MinionScript;
     private float snapInverse;
     private int instanceState = 0;
+    public Tilemap tilemap;
+    private TileBase tilecell;
 
     public int InstanceState
     {
@@ -53,6 +56,18 @@ public class FriendlySpawner : MonoBehaviour
                         ArrowScript.Direction = i;
                         ArrowScript.Minion = MinionScript as Skeleton;
                     }
+                }
+                else if(MinionScript is Miner){
+                    Vector3Int v = Vector3Int.RoundToInt( Camera.main.ScreenToWorldPoint( Input.mousePosition) );
+                    v.z = 0;
+                    tilecell = tilemap.GetTile( v );
+                    //Debug.Log(tilecell);
+                    Debug.Log(tilemap.GetTile(new Vector3Int(1,1,0)));
+                    //Debug.Log(v);
+                    if(tilecell && tilecell.name == "Floor(1)_1" ){
+                        ((Miner)MinionScript).mine = true;
+                    }
+                    instanceState = 0;
                 }
                 else
                 {

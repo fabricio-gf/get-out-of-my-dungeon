@@ -7,6 +7,7 @@ public class Miner : Minion
 {
     [SerializeField] private GameObject PopupTextPrefab;
     private GameObject Canvas;
+    public bool mine = false;
 
     public void CreateFloatingText(string text, Transform location)
     {
@@ -21,11 +22,13 @@ public class Miner : Minion
 
     public override void Action()
     {
-        CreateFloatingText("+20", transform);
+        if(mine)
+            CreateFloatingText("+20", transform);
     }
 
     void Start()
     {
         Canvas = GameObject.Find("/Canvas");
+        hp = 40f;
     }
 }

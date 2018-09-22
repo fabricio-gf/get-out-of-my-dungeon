@@ -8,6 +8,8 @@ public abstract class Minion : MonoBehaviour
     private bool isClicked = false;
     private bool inGame = false;
     private float timer = 0f;
+    protected float hp;
+    private float damage=15;
 
     public abstract void Action();
 
@@ -31,6 +33,11 @@ public abstract class Minion : MonoBehaviour
     {
         if (inGame)
         {
+
+            if(hp<=0){
+                Destroy(gameObject);
+            }
+
             if (timer >= reload)
             {
                 Action();
@@ -42,4 +49,14 @@ public abstract class Minion : MonoBehaviour
             }
         }
     }
+
+    void OnCollisionEnter2D(Collision2D collision){
+        EnemyBehaviour enemy = collision.gameObject.GetComponent<EnemyBehaviour>();
+        if(collision.gameObject.tag == "enemy" && inGame &&  enemy.damagetimer<=0){
+            hp=hp-damage;
+            Debug.Log(hp);
+            enemy.damagetimer=enemy.immuneDamageTime;
+        }
+    }
+
 }
