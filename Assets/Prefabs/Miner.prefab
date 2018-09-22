@@ -25,7 +25,7 @@ GameObject:
   - component: {fileID: 114432543892349808}
   m_Layer: 0
   m_Name: Miner
-  m_TagString: Untagged
+  m_TagString: minion
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -109,3 +109,5 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   reload: 3
+  PopupTextPrefab: {fileID: 1854525421239674, guid: f47d7c4bca5394c23ab86ef34f6aaded,
+    type: 2}
