@@ -70,7 +70,7 @@ public class FriendlySpawner : MonoBehaviour
         }
     }
 
-    void OnMouseDown()
+    public void Spawn()
     {
         if (instanceState == 0)
         {
