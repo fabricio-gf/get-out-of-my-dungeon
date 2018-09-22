@@ -21,6 +21,7 @@ GameObject:
   - component: {fileID: 224139072511547430}
   - component: {fileID: 222759608964736490}
   - component: {fileID: 114340824098100380}
+  - component: {fileID: 114931180403544002}
   m_Layer: 5
   m_Name: FloatingText
   m_TagString: Untagged
@@ -51,16 +52,29 @@ MonoBehaviour:
     m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
     m_FontSize: 28
     m_FontStyle: 0
-    m_BestFit: 0
+    m_BestFit: 1
     m_MinSize: 0
     m_MaxSize: 40
     m_Alignment: 1
     m_AlignByGeometry: 0
     m_RichText: 1
-    m_HorizontalOverflow: 0
-    m_VerticalOverflow: 0
+    m_HorizontalOverflow: 1
+    m_VerticalOverflow: 1
     m_LineSpacing: 1
   m_Text: 
+--- !u!114 &114931180403544002
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1854525421239674}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8ccf23a16b4474ad891eb0cafedb6491, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  lifetime: 1
+  speed: 100
 --- !u!222 &222759608964736490
 CanvasRenderer:
   m_ObjectHideFlags: 1
