@@ -14,18 +14,12 @@ public abstract class Minion : MonoBehaviour
     public bool IsClicked
     {
         get { return isClicked; }
-        set
-        {
-            isClicked = value;
-        }
+        set { isClicked = value; }
     }
     public bool InGame
     {
         get { return inGame; }
-        set
-        {
-            inGame = value;
-        }
+        set { inGame = value; }
     }
 
     void OnMouseDown()
