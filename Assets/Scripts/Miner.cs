@@ -6,8 +6,16 @@ using UnityEngine.UI;
 public class Miner : Minion
 {
     [SerializeField] private GameObject PopupTextPrefab;
+    private GameObject TextObject;
     private GameObject Canvas;
-    public bool mine = false;
+    private Text TextScript;
+    private bool mine = false;
+
+    public bool Mine
+    {
+        get { return mine; }
+        set { mine = value; }
+    }
 
     public void CreateFloatingText(string text, Transform location)
     {
@@ -22,13 +30,17 @@ public class Miner : Minion
 
     public override void Action()
     {
-        if(mine)
+        if (mine)
+        {
             CreateFloatingText("+20", transform);
+            TextScript.text = (int.Parse(TextScript.text) + 20).ToString();
+        }
     }
 
     void Start()
     {
         Canvas = GameObject.Find("/Canvas");
-        hp = 40f;
+        TextObject = GameObject.Find("/Canvas/Info/Money/Text");
+        TextScript = TextObject.GetComponent<Text>();
     }
 }

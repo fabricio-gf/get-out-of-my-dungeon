@@ -19,9 +19,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4130195589612450}
-  - component: {fileID: 114301881029021886}
   - component: {fileID: 212701769998585236}
   - component: {fileID: 61031269271506372}
+  - component: {fileID: 114656688234622246}
   m_Layer: 0
   m_Name: Golem
   m_TagString: minion
@@ -67,7 +67,7 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 0.2513423, y: 0.32}
   m_EdgeRadius: 0
---- !u!114 &114301881029021886
+--- !u!114 &114656688234622246
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_CorrespondingSourceObject: {fileID: 0}
@@ -79,6 +79,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   reload: 0
+  hp: 140
+  damage: 15
 --- !u!212 &212701769998585236
 SpriteRenderer:
   m_ObjectHideFlags: 1
