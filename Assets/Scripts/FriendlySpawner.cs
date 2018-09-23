@@ -58,7 +58,7 @@ public class FriendlySpawner : MonoBehaviour
                     }
                 }
                 else if(MinionScript is Miner){
-                    Vector3Int v = Vector3Int.RoundToInt( Camera.main.ScreenToWorldPoint( Input.mousePosition) );
+                    Vector3Int v = Vector3Int.RoundToInt( Minion.transform.position );
                     v.z = 0;
                     tilecell = tilemap.GetTile( v );
                     //Debug.Log(tilecell);
