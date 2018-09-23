@@ -78,7 +78,7 @@ BoxCollider2D:
   m_Offset: {x: -0.023932576, y: 0}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0.5, y: 0.5}
+    pivot: {x: 0.5, y: 0}
     oldSize: {x: 0.32, y: 0.32}
     newSize: {x: 0.32, y: 0.32}
     adaptiveTilingThreshold: 0.5
@@ -102,6 +102,8 @@ MonoBehaviour:
   speed: 1.1
   hp: 100
   dano: 20
+  PopupTextPrefab: {fileID: 1854525421239674, guid: f47d7c4bca5394c23ab86ef34f6aaded,
+    type: 2}
   damagetimer: 0
   immuneDamageTime: 2
 --- !u!212 &212801347576484654
@@ -149,4 +151,4 @@ SpriteRenderer:
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
-  m_SpriteSortPoint: 0
+  m_SpriteSortPoint: 1
