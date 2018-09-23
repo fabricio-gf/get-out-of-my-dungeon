@@ -33,7 +33,7 @@ public class EnemyBehaviour : MonoBehaviour
     void Start()
     {
         Canvas = GameObject.Find("/Canvas");
-        TextObject = GameObject.Find("/Canvas/Info/Money/Text");
+        TextObject = GameObject.Find("/Canvas/SideBar/Money/Text");
         TextScript = TextObject.GetComponent<Text>();
     }
 

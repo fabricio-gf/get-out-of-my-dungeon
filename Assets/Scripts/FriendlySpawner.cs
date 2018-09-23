@@ -39,7 +39,7 @@ public class FriendlySpawner : MonoBehaviour, IDragHandler, IEndDragHandler
     {
         snapInverse = 1 / snapValue;
         Canvas = GameObject.Find("/Canvas");
-        MoneyText = GameObject.Find("/Canvas/Info/Money/Text").GetComponent<Text>();
+        MoneyText = GameObject.Find("/Canvas/SideBar/Money/Text").GetComponent<Text>();
     }
 
     void Update()
