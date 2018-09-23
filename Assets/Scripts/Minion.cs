@@ -56,6 +56,7 @@ public abstract class Minion : MonoBehaviour
         EnemyBehaviour enemy = collision.gameObject.GetComponent<EnemyBehaviour>();
         if (collision.gameObject.tag == "enemy" && inGame && enemy.damagetimer <= 0)
         {
+            collision.gameObject.GetComponent<AudioSource>().Play();
             hp = hp - damage;
             Debug.Log(hp);
             enemy.damagetimer = enemy.immuneDamageTime;

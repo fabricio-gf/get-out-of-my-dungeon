@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.Tilemaps;
+using UnityEngine.SceneManagement;
 
 public class EnemyBehaviour : MonoBehaviour
 {
@@ -62,7 +63,7 @@ public class EnemyBehaviour : MonoBehaviour
                 tilecell = tilemap.GetTile(Vector3Int.FloorToInt(check));
                 if (tilecell && tilecell.name.StartsWith("Floor(1)_0"))
                 {
-                    //gameover
+                    SceneManager.LoadScene("GameOver");
                 }
                 else if (tilecell && tilecell.name.StartsWith("Wall"))
                 {

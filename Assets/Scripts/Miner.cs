@@ -32,6 +32,7 @@ public class Miner : Minion
     {
         if (mine)
         {
+            GetComponent<AudioSource>().Play();
             CreateFloatingText("+20", transform);
             TextScript.text = (int.Parse(TextScript.text) + 20).ToString();
         }
