@@ -1,5 +1,9 @@
 fileFormatVersion: 2
+<<<<<<< HEAD
+guid: 7caacb9d7c06cfe4788ae440ac55a836
+=======
 guid: 9950e89c3c8314bbf814f570a65b9088
+>>>>>>> origin/rodrigo
 TextureImporter:
   fileIDToRecycleName: {}
   externalObjects: {}
@@ -31,7 +35,11 @@ TextureImporter:
   maxTextureSize: 2048
   textureSettings:
     serializedVersion: 2
+<<<<<<< HEAD
+    filterMode: -1
+=======
     filterMode: 0
+>>>>>>> origin/rodrigo
     aniso: -1
     mipBias: -100
     wrapU: 1
@@ -69,6 +77,8 @@ TextureImporter:
     allowsAlphaSplitting: 0
     overridden: 0
     androidETC2FallbackOverride: 0
+<<<<<<< HEAD
+=======
   - serializedVersion: 2
     buildTarget: Standalone
     maxTextureSize: 2048
@@ -102,13 +112,18 @@ TextureImporter:
     allowsAlphaSplitting: 0
     overridden: 0
     androidETC2FallbackOverride: 0
+>>>>>>> origin/rodrigo
   spriteSheet:
     serializedVersion: 2
     sprites: []
     outline: []
     physicsShape: []
     bones: []
+<<<<<<< HEAD
+    spriteID: 81cfc438ad0919f4d87758bc78d52cae
+=======
     spriteID: 34786a26705b94141b0232adbb9c6bf7
+>>>>>>> origin/rodrigo
     vertices: []
     indices: 
     edges: []

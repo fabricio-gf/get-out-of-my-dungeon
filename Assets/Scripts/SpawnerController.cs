@@ -5,23 +5,22 @@ using UnityEngine;
 public class SpawnerController : MonoBehaviour
 {
 
-    public GameObject[] spawners;
     private EnemySpawner[] spawnersScript;
     private float timer = 0;
     private float spawnTimer = 5;
-    private float[] timeModifier = new float[] { 4, 3, 2, 2, 2, 0, 0, -2, -1, 0, -2, 0, 4, 3, 4, -4, -4, 0 };
+    private float[] timeModifier;
     private int spawnIndex;
     private int modifierIndex = 0;
 
     // Use this for initialization
     void Awake()
     {
-        spawnersScript = new EnemySpawner[spawners.Length];
-        int i = 0;
-        foreach (var spawner in spawners)
+		timeModifier = new float[] { 4, 3, 2, 2, 2, 0, 0, -2, -1, 0, -2, 0, 4, 3, 4, -4, -4, 0 };
+        int i;
+		spawnersScript = new EnemySpawner[transform.childCount];
+        for (i = 0; i < transform.childCount; i++)
         {
-            spawnersScript[i] = spawner.GetComponent<EnemySpawner>();
-            i++;
+            spawnersScript[i] = transform.GetChild(i).GetComponentInChildren<EnemySpawner>();
         }
 
     }

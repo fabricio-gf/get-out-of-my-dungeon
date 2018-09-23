@@ -63,6 +63,7 @@ public class FriendlySpawner : MonoBehaviour, IDragHandler, IEndDragHandler
 
     public void OnDrag(PointerEventData eventData)
     {
+        Debug.Log(instanceState);
         if (instanceState == 0 && int.Parse(MoneyText.text) >= cost)
         {
             MoneyText.text = (int.Parse(MoneyText.text) - cost).ToString();
