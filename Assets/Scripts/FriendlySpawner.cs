@@ -1,10 +1,11 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.EventSystems;
 using UnityEngine.Tilemaps;
 using UnityEngine.UI;
 
-public class FriendlySpawner : MonoBehaviour
+public class FriendlySpawner : MonoBehaviour, IDragHandler, IEndDragHandler
 {
     [SerializeField] private GameObject MinionPrefab;
     [SerializeField] private GameObject MinionImage;
@@ -38,56 +39,12 @@ public class FriendlySpawner : MonoBehaviour
     {
         snapInverse = 1 / snapValue;
         Canvas = GameObject.Find("/Canvas");
-        MoneyText = GameObject.Find("/Canvas/Info/Money/Text").GetComponent<Text>();
+        MoneyText = GameObject.Find("/Canvas/SideBar/Money/Text").GetComponent<Text>();
     }
 
     void Update()
     {
-        if (instanceState == 1)
-        {
-            mousePos = Input.mousePosition;
-            mousePos.z = 10f;
-            Minion.transform.position = mousePos;
-            if (MinionScript.IsClicked == true)
-            {
-                GameObject Minion2 = Minion;
-                Minion = Instantiate(MinionPrefab, Camera.main.ScreenToWorldPoint(Minion.transform.position), Minion.transform.rotation);
-                Destroy(Minion2);
-                MinionScript = Minion.GetComponent<Minion>();
-                MinionScript.IsClicked = true;
-                MinionScript.InGame = true;
-                SnapOnGrid(Minion);
-                if (MinionScript is Skeleton)
-                {
-                    instanceState = 2;
-                    for (int i = 0; i < 4; i++)
-                    {
-                        Arrows[i] = Instantiate(ArrowPrefab, new Vector3(Minion.transform.position.x, Minion.transform.position.y + Minion.GetComponent<SpriteRenderer>().bounds.size.y / 2, Minion.transform.position.z) + Quaternion.Euler(0, 0, 90 * i) * Minion.transform.right, Quaternion.Euler(0, 0, 90 * (i + 1)));
-                        ArrowBehaviour ArrowScript = Arrows[i].GetComponent<ArrowBehaviour>();
-                        ArrowScript.Spawner = this;
-                        ArrowScript.Direction = i;
-                        ArrowScript.Minion = MinionScript as Skeleton;
-                    }
-                }
-                else if (MinionScript is Miner)
-                {
-                    Vector3Int v = Vector3Int.FloorToInt(Minion.transform.position);
-                    v.z = 0;
-                    tilecell = tilemap.GetTile(v);
-                    Debug.Log(tilecell);
-                    if (tilecell && tilecell.name == "Floor(1)_1")
-                    {
-                        (MinionScript as Miner).Mine = true;
-                    }
-                    instanceState = 0;
-                }
-                else
-                {
-                    instanceState = 0;
-                }
-            }
-        }
-        else if (instanceState == 3)
+        if (instanceState == 3)
         {
             foreach (GameObject Arrow in Arrows)
             {
@@ -97,7 +54,14 @@ public class FriendlySpawner : MonoBehaviour
         }
     }
 
-    public void Spawn()
+    void SnapOnGrid(GameObject minion)
+    {
+        Vector3Int v1 = Vector3Int.CeilToInt(Minion.transform.position);
+        Vector3Int v2 = Vector3Int.FloorToInt(Minion.transform.position);
+        minion.transform.position = new Vector3((v1.x + v2.x) / 2f, (v1.y + v2.y) / 2f, (v1.z + v2.z) / 2f);
+    }
+
+    public void OnDrag(PointerEventData eventData)
     {
         if (instanceState == 0 && int.Parse(MoneyText.text) >= cost)
         {
@@ -107,12 +71,53 @@ public class FriendlySpawner : MonoBehaviour
             MinionScript = Minion.GetComponent<Minion>();
             instanceState = 1;
         }
+        else if (instanceState == 1)
+        {
+            mousePos = Input.mousePosition;
+            mousePos.z = 10f;
+            Minion.transform.position = mousePos;
+        }
     }
 
-    void SnapOnGrid(GameObject minion)
+    public void OnEndDrag(PointerEventData eventData)
     {
-        Vector3Int v1 = Vector3Int.CeilToInt(Minion.transform.position);
-        Vector3Int v2 = Vector3Int.FloorToInt(Minion.transform.position);
-        minion.transform.position = new Vector3((v1.x + v2.x) / 2f, (v1.y + v2.y) / 2f, (v1.z + v2.z) / 2f);
+        if (instanceState == 1)
+        {
+            GameObject Minion2 = Minion;
+            Minion = Instantiate(MinionPrefab, Camera.main.ScreenToWorldPoint(Minion.transform.position), Minion.transform.rotation);
+            Destroy(Minion2);
+            MinionScript = Minion.GetComponent<Minion>();
+            MinionScript.IsClicked = true;
+            MinionScript.InGame = true;
+            SnapOnGrid(Minion);
+            if (MinionScript is Skeleton)
+            {
+                instanceState = 2;
+                for (int i = 0; i < 4; i++)
+                {
+                    Arrows[i] = Instantiate(ArrowPrefab, new Vector3(Minion.transform.position.x, Minion.transform.position.y + Minion.GetComponent<SpriteRenderer>().bounds.size.y / 2, Minion.transform.position.z) + Quaternion.Euler(0, 0, 90 * i) * Minion.transform.right, Quaternion.Euler(0, 0, 90 * (i + 1)));
+                    ArrowBehaviour ArrowScript = Arrows[i].GetComponent<ArrowBehaviour>();
+                    ArrowScript.Spawner = this;
+                    ArrowScript.Direction = i;
+                    ArrowScript.Minion = MinionScript as Skeleton;
+                }
+            }
+            else if (MinionScript is Miner)
+            {
+                Vector3Int v = Vector3Int.FloorToInt(Minion.transform.position);
+                v.z = 0;
+                tilecell = tilemap.GetTile(v);
+                Debug.Log(tilecell);
+                if (tilecell && tilecell.name == "Floor(1)_1")
+                {
+                    (MinionScript as Miner).Mine = true;
+                }
+                instanceState = 0;
+            }
+            else
+            {
+                instanceState = 0;
+            }
+        }
     }
 }
