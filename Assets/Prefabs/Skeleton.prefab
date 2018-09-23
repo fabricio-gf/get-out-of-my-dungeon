@@ -175,7 +175,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   reload: 1
-  hp: 80
+  hp: 40
   damage: 15
   attack: {fileID: 1054409547010230, guid: 8928f849ff286410797d9084342d9ee2, type: 2}
 --- !u!212 &212076401099370066

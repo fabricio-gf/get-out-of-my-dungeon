@@ -175,8 +175,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   reload: 5
-  hp: 40
-  damage: 15
+  hp: 20
+  damage: 20
   PopupTextPrefab: {fileID: 1854525421239674, guid: f47d7c4bca5394c23ab86ef34f6aaded,
     type: 2}
 --- !u!212 &212250734629072806

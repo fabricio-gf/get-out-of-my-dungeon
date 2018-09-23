@@ -197,7 +197,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   speed: 1
   hp: 100
-  dano: 20
+  dano: 30
   score: 15
   PopupTextPrefab: {fileID: 1854525421239674, guid: f47d7c4bca5394c23ab86ef34f6aaded,
     type: 2}
