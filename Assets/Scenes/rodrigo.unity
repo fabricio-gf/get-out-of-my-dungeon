@@ -611,7 +611,8 @@ Prefab:
       value: 
       objectReference: {fileID: 21300002, guid: bb69fe36915a98349a0e9981e548c132,
         type: 3}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 114615311765721572, guid: 9b6dc68e111045f4ca41e17b501fb8fc, type: 2}
   m_SourcePrefab: {fileID: 100100000, guid: 9b6dc68e111045f4ca41e17b501fb8fc, type: 2}
   m_IsPrefabAsset: 0
 --- !u!224 &836422191 stripped
@@ -727,7 +728,8 @@ Prefab:
       value: 
       objectReference: {fileID: 21300000, guid: bb69fe36915a98349a0e9981e548c132,
         type: 3}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 114846789905937384, guid: d2af6fbf96d6d4390b22b08c354f6adb, type: 2}
   m_SourcePrefab: {fileID: 100100000, guid: d2af6fbf96d6d4390b22b08c354f6adb, type: 2}
   m_IsPrefabAsset: 0
 --- !u!224 &964793246 stripped
@@ -1057,7 +1059,8 @@ Prefab:
       value: 
       objectReference: {fileID: 21300004, guid: bb69fe36915a98349a0e9981e548c132,
         type: 3}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 114965641593452562, guid: a2a7ec36f26ee8b42a0828310cd3b74c, type: 2}
   m_SourcePrefab: {fileID: 100100000, guid: a2a7ec36f26ee8b42a0828310cd3b74c, type: 2}
   m_IsPrefabAsset: 0
 --- !u!1 &1455456670
@@ -3367,7 +3370,7 @@ Camera:
   m_Enabled: 1
   serializedVersion: 2
   m_ClearFlags: 1
-  m_BackGroundColor: {r: 1, g: 0, b: 0, a: 0}
+  m_BackGroundColor: {r: 0.20754719, g: 0.06852973, b: 0.06852973, a: 0}
   m_projectionMatrixMode: 1
   m_SensorSize: {x: 36, y: 24}
   m_LensShift: {x: 0, y: 0}
