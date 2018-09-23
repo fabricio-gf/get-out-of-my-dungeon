@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.Tilemaps;
+using UnityEngine.SceneManagement;
 
 public class EnemyBehaviour : MonoBehaviour
 {
@@ -50,7 +51,7 @@ public class EnemyBehaviour : MonoBehaviour
             v.z = 0;
             tilecell = tilemap.GetTile(v);
             if(tilecell && tilecell.name.StartsWith("Floor(1)_0")){
-                //gameover
+                SceneManager.LoadScene("GameOver");
             }
             if(tilecell && tilecell.name.StartsWith("Wall")){
                 if(dir==0){

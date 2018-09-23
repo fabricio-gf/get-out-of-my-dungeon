@@ -24,6 +24,7 @@ GameObject:
   - component: {fileID: 212801347576484654}
   - component: {fileID: 61411279368883918}
   - component: {fileID: 8195094282501633510}
+  - component: {fileID: 82679398700709442}
   m_Layer: 0
   m_Name: Rogue
   m_TagString: enemy
@@ -91,7 +92,7 @@ BoxCollider2D:
   m_EdgeRadius: 0
 --- !u!82 &82679398700709442
 AudioSource:
-  m_ObjectHideFlags: 1
+  m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1201346005792278}
@@ -200,7 +201,6 @@ MonoBehaviour:
   dano: 20
   PopupTextPrefab: {fileID: 1854525421239674, guid: f47d7c4bca5394c23ab86ef34f6aaded,
     type: 2}
-  tilemap: {fileID: 0}
   damagetimer: 0
   immuneDamageTime: 2
 --- !u!212 &212801347576484654
