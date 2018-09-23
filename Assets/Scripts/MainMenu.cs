@@ -12,6 +12,10 @@ public class MainMenu : MonoBehaviour {
 		SceneManager.LoadScene("rodrigo");
 	}
 
+	public void BackToMenu(){
+		SceneManager.LoadScene("Menu");	
+	}
+
 	public void Quit(){
 		Application.Quit();
 	}
