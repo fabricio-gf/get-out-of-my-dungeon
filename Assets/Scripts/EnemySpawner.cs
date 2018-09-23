@@ -17,12 +17,16 @@ public class EnemySpawner : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 		timer+=Time.deltaTime;
-		if(timer>=SpawnTimer){
-			timer-=SpawnTimer;
-			Enemy = Instantiate(EnemyPrefab);
-			enemyStartingPos = transform.position;
-			enemyStartingPos.z = 10f;
-			Enemy.transform.position = enemyStartingPos;
-		}
+	}
+
+	public bool spawn(){	
+		if(timer < SpawnTimer)
+			return false;
+		timer=0;
+		Enemy = Instantiate(EnemyPrefab);
+		enemyStartingPos = transform.position;
+		enemyStartingPos.z = 10f;
+		Enemy.transform.position = enemyStartingPos;
+		return true;
 	}
 }
