@@ -24,6 +24,12 @@ public abstract class Minion : MonoBehaviour
         set { inGame = value; }
     }
 
+    public float Damage
+    {
+        get { return damage; }
+        private set { damage = value; }
+    }
+
     public void OnMouseDown()
     {
         isClicked = true;
@@ -33,7 +39,6 @@ public abstract class Minion : MonoBehaviour
     {
         if (inGame)
         {
-
             if (hp <= 0)
             {
                 Destroy(gameObject);
@@ -57,8 +62,7 @@ public abstract class Minion : MonoBehaviour
         if (collision.gameObject.tag == "enemy" && inGame && enemy.damagetimer <= 0)
         {
             collision.gameObject.GetComponent<AudioSource>().Play();
-            hp = hp - damage;
-            Debug.Log(hp);
+            hp = hp - enemy.Dano;
             enemy.damagetimer = enemy.immuneDamageTime;
         }
     }

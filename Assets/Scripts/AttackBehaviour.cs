@@ -5,7 +5,14 @@ using UnityEngine;
 public class AttackBehaviour : MonoBehaviour
 {
     private Vector3 targetPosition;
+    private float damage;
     private float speed = 10;
+
+    public float Damage
+    {
+        get { return damage; }
+        set { damage = value; }
+    }
 
     void Start()
     {

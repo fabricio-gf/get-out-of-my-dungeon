@@ -63,7 +63,6 @@ public class FriendlySpawner : MonoBehaviour, IDragHandler, IEndDragHandler
 
     public void OnDrag(PointerEventData eventData)
     {
-        Debug.Log(instanceState);
         if (instanceState == 0 && int.Parse(MoneyText.text) >= cost)
         {
             MoneyText.text = (int.Parse(MoneyText.text) - cost).ToString();
@@ -87,10 +86,10 @@ public class FriendlySpawner : MonoBehaviour, IDragHandler, IEndDragHandler
             Vector3Int v = Vector3Int.RoundToInt(Camera.main.ScreenToWorldPoint(Minion.transform.position));
             v.z = 0;
             tilecell = tilemap.GetTile(v);
-            Debug.Log(tilecell);
-            if (!tilecell || (tilecell && tilecell.name.StartsWith("Floor(1)_0"))){
+            if (!tilecell || (tilecell && tilecell.name.StartsWith("Floor(1)_0")))
+            {
                 MoneyText.text = (int.Parse(MoneyText.text) + cost).ToString();
-                instanceState=0;
+                instanceState = 0;
                 Destroy(Minion);
                 return;
             }
@@ -118,7 +117,6 @@ public class FriendlySpawner : MonoBehaviour, IDragHandler, IEndDragHandler
                 v = Vector3Int.FloorToInt(Minion.transform.position);
                 v.z = 0;
                 tilecell = tilemap.GetTile(v);
-                Debug.Log(tilecell);
                 if (tilecell && tilecell.name == "Floor(1)_1")
                 {
                     (MinionScript as Miner).Mine = true;

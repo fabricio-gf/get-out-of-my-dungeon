@@ -28,6 +28,13 @@ public class EnemyBehaviour : MonoBehaviour
     private float _timeStartedLerping;
     private Vector3 _startPosition;
     private float _timeCollided;
+
+    public float Dano
+    {
+        get { return dano; }
+        set { dano = value; }
+    }
+
     public void CreateFloatingText(string text, Transform location)
     {
         GameObject instance = Instantiate(PopupTextPrefab);
@@ -162,11 +169,6 @@ public class EnemyBehaviour : MonoBehaviour
         }
     }
 
-    public static float Hermite(float start, float end, float value)
-    {
-        return Mathf.Lerp(start, end, value * value * (3.0f - 2.0f * value));
-    }
-
     public void move()
     {
         if (!col && stopTimer <= 0)
@@ -178,9 +180,13 @@ public class EnemyBehaviour : MonoBehaviour
         }
         else if (col)
         {
+            stopTimer = stopTime;
             transform.position = _startPosition;
-            _timeStartedLerping = Time.time;
             col = false;
+        }
+        else if (stopTimer > 0)
+        {
+            _timeStartedLerping = Time.time;
         }
 
     }
@@ -189,8 +195,7 @@ public class EnemyBehaviour : MonoBehaviour
     {
         if (collision.gameObject.name.StartsWith("SkeletonAttack"))
         {
-            hp -= dano;
-            //Debug.Log("dano");
+            hp -= collision.gameObject.GetComponent<AttackBehaviour>().Damage;
         }
         else if (collision.gameObject.tag == "enemy")
         {

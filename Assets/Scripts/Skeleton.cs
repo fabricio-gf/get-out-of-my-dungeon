@@ -24,7 +24,7 @@ public class Skeleton : Minion
         if (direction != -1)
         {
             GetComponent<AudioSource>().Play();
-            Instantiate(attack, new Vector3(transform.position.x, transform.position.y + GetComponent<SpriteRenderer>().bounds.size.y / 2, transform.position.z), Quaternion.Euler(0, 0, 90 * direction));
+            Instantiate(attack, new Vector3(transform.position.x, transform.position.y + GetComponent<SpriteRenderer>().bounds.size.y / 2, transform.position.z), Quaternion.Euler(0, 0, 90 * direction)).GetComponent<AttackBehaviour>().Damage = this.Damage;
         }
     }
 }
