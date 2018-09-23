@@ -7,10 +7,6 @@ public class Skeleton : Minion
     [SerializeField] private GameObject attack;
     private int direction = -1;
 
-    void Start(){
-        hp = 80;
-    }
-
     public int Direction
     {
         get { return direction; }
@@ -27,7 +23,7 @@ public class Skeleton : Minion
     {
         if (direction != -1)
         {
-            Instantiate(attack, transform.position, Quaternion.Euler(0, 0, 90 * direction));
+            Instantiate(attack, new Vector3(transform.position.x, transform.position.y + GetComponent<SpriteRenderer>().bounds.size.y / 2, transform.position.z), Quaternion.Euler(0, 0, 90 * direction));
         }
     }
 }

@@ -21,7 +21,7 @@ GameObject:
   - component: {fileID: 4136017959498738}
   - component: {fileID: 212700682448266782}
   m_Layer: 0
-  m_Name: minerio
+  m_Name: chao
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
