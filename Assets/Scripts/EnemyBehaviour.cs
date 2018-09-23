@@ -11,9 +11,10 @@ public class EnemyBehaviour : MonoBehaviour
     [SerializeField] private float hp = 100f;
     [SerializeField] private float dano = 20f;
     [SerializeField] private GameObject PopupTextPrefab;
+    private Vector3 Target;
     private Tilemap tilemap;
     private GameObject TextObject;
-    private int dir=0;
+    private int dir = 0;
     private GameObject Canvas;
     private Text TextScript;
     private Vector3 movement;
@@ -21,6 +22,9 @@ public class EnemyBehaviour : MonoBehaviour
     private float stopTime = 1, stopTimer;
     public float damagetimer = 0, immuneDamageTime = 1.6f;
     private TileBase tilecell;
+    private float _timeStartedLerping;
+    private Vector3 _startPosition;
+    private float _timeCollided;
     public void CreateFloatingText(string text, Transform location)
     {
         GameObject instance = Instantiate(PopupTextPrefab);
@@ -39,48 +43,97 @@ public class EnemyBehaviour : MonoBehaviour
         Canvas = GameObject.Find("/Canvas");
         TextObject = GameObject.Find("/Canvas/SideBar/Money/Text");
         TextScript = TextObject.GetComponent<Text>();
+        Target = transform.position;
     }
 
     // Update is called once per frame
     void Update()
     {
-        if(!gameObject.name.StartsWith("Angel") ){   
-            Vector3Int v = Vector3Int.FloorToInt(gameObject.transform.position);
-            v.x-=1;
-            v.z = 0;
-            tilecell = tilemap.GetTile(v);
-            if(tilecell && tilecell.name.StartsWith("Floor(1)_0")){
-                //gameover
-            }
-            if(tilecell && tilecell.name.StartsWith("Wall")){
-                if(dir==0){
-                    v = Vector3Int.RoundToInt(gameObject.transform.position);
-                    v.z=0;
-                    int x;
-                    if( (x=Mathf.RoundToInt( Random.Range(0,1) )) == 0)
-                        v.y-=1;
-                    else
-                        v.y+=1;
-                    tilecell = tilemap.GetTile(v);
-                    if(tilecell && tilecell.name.StartsWith("Wall")){
-                        if(x==0)
-                            dir = 2; // desce
+        if (!gameObject.name.StartsWith("Angel"))
+        {
+            if (gameObject.transform.position == Target)
+            {
+                Vector3Int v = Vector3Int.FloorToInt(gameObject.transform.position);
+                Vector3Int v2 = Vector3Int.CeilToInt(gameObject.transform.position);
+                Vector3 check = new Vector3(v.x - 1, (v.y + v2.y) / 2f, 0);
+                tilecell = tilemap.GetTile(Vector3Int.FloorToInt(check));
+                if (tilecell && tilecell.name.StartsWith("Floor(1)_0"))
+                {
+                    //gameover
+                }
+                else if (tilecell && tilecell.name.StartsWith("Wall"))
+                {
+                    if (dir == 0)
+                    {
+                        v = Vector3Int.FloorToInt(gameObject.transform.position);
+                        v2 = Vector3Int.CeilToInt(gameObject.transform.position);
+                        if (Mathf.RoundToInt(Random.Range(0, 2)) == 0)
+                        {
+                            check = new Vector3(v.x, (v.y + v2.y) / 2f + 1, 0);
+                            tilecell = tilemap.GetTile(Vector3Int.FloorToInt(check));
+                            if (tilecell && tilecell.name.StartsWith("Wall"))
+                            {
+                                Target = new Vector3(check.x, check.y - 2, check.z);
+                                dir = 1;
+                            }
+                            else
+                            {
+                                Target = check;
+                                dir = -1;
+                            }
+                        }
                         else
-                            dir=1;
+                        {
+                            check = new Vector3(v.x, (v.y + v2.y) / 2f - 1, 0);
+                            tilecell = tilemap.GetTile(Vector3Int.FloorToInt(check));
+                            if (tilecell && tilecell.name.StartsWith("Wall"))
+                            {
+                                Target = new Vector3(check.x, check.y + 2, check.z);
+                                dir = -1;
+                            }
+                            else
+                            {
+                                Target = check;
+                                dir = 1;
+                            }
+                        }
                     }
-                    else{
-                        if(x==0)
-                            dir = 1; // desce
-                        else
-                            dir=2;
+                    else
+                    {
+                        v = Vector3Int.FloorToInt(gameObject.transform.position);
+                        v2 = Vector3Int.CeilToInt(gameObject.transform.position);
+                        if (dir == 1)
+                        {
+                            check = new Vector3(v.x, (v.y + v2.y) / 2f - 1, 0);
+                            tilecell = tilemap.GetTile(Vector3Int.FloorToInt(check));
+                            Target = check;
+                        }
+                        else if (dir == -1)
+                        {
+                            check = new Vector3(v.x, (v.y + v2.y) / 2f + 1, 0);
+                            tilecell = tilemap.GetTile(Vector3Int.FloorToInt(check));
+                            Target = check;
+                        }
                     }
                 }
+                else
+                {
+                    Target = check;
+                    dir = 0;
+                }
+                _timeStartedLerping = Time.time;
+                _startPosition = transform.position;
             }
-            else{
-                if(dir!=0)
-                    move();
-                    move();
-                dir = 0; // em frente
+        }
+        else
+        {
+            if (gameObject.transform.position == Target)
+            {
+                Vector3Int v = Vector3Int.FloorToInt(gameObject.transform.position);
+                Vector3Int v2 = Vector3Int.CeilToInt(gameObject.transform.position);
+                Target = new Vector3(v.x - 1, (v.y + v2.y) / 2f, 0);
+                _timeStartedLerping = Time.time;
+                _startPosition = transform.position;
             }
         }
         move();
@@ -98,32 +151,24 @@ public class EnemyBehaviour : MonoBehaviour
         }
     }
 
-    public void move(){
+    public static float Hermite(float start, float end, float value)
+    {
+        return Mathf.Lerp(start, end, value * value * (3.0f - 2.0f * value));
+    }
 
+    public void move()
+    {
         if (!col && stopTimer <= 0)
         {
-            movement = transform.position;
-            
-            if(dir==0)
-                movement.x -= speed * Time.deltaTime;
-            else if(dir==1)
-                movement.y -= speed * Time.deltaTime;
-            else if(dir==2)
-                movement.y += speed * Time.deltaTime;
-            
-            transform.position = movement;
+            float timeSinceStarted = Time.time - _timeStartedLerping;
+            float percentageComplete = timeSinceStarted / speed;
+
+            transform.position = Vector3.Lerp(_startPosition, Target, percentageComplete);
         }
         else if (col)
         {
-            movement = transform.position;
-            if(dir==0)
-                movement.x += 6 * speed * Time.deltaTime;
-            else if(dir==1)
-                movement.x += 6 * speed * Time.deltaTime;
-            else if(dir==2)
-                movement.x += 6 * speed * Time.deltaTime;
-            transform.position = movement;
-            stopTimer = stopTime;
+            transform.position = _startPosition;
+            _timeStartedLerping = Time.time;
             col = false;
         }
 
@@ -131,7 +176,6 @@ public class EnemyBehaviour : MonoBehaviour
 
     void OnCollisionEnter2D(Collision2D collision)
     {
-        Debug.Log("oi");
         if (collision.gameObject.name.StartsWith("SkeletonAttack"))
         {
             hp -= dano;

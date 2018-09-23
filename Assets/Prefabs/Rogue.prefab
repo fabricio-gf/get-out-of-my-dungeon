@@ -100,12 +100,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a9f45184eb082aa45b3bca36c93a011c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 1.1
+  speed: 1
   hp: 100
   dano: 20
   PopupTextPrefab: {fileID: 1854525421239674, guid: f47d7c4bca5394c23ab86ef34f6aaded,
     type: 2}
-  tilemap: {fileID: 0}
   damagetimer: 0
   immuneDamageTime: 2
 --- !u!212 &212801347576484654
