@@ -84,6 +84,16 @@ public class FriendlySpawner : MonoBehaviour, IDragHandler, IEndDragHandler
     {
         if (instanceState == 1)
         {
+            Vector3Int v = Vector3Int.RoundToInt(Camera.main.ScreenToWorldPoint(Minion.transform.position));
+            v.z = 0;
+            tilecell = tilemap.GetTile(v);
+            Debug.Log(tilecell);
+            if (!tilecell || (tilecell && tilecell.name.StartsWith("Floor(1)_0"))){
+                MoneyText.text = (int.Parse(MoneyText.text) + cost).ToString();
+                instanceState=0;
+                Destroy(Minion);
+                return;
+            }
             GameObject Minion2 = Minion;
             Minion = Instantiate(MinionPrefab, Camera.main.ScreenToWorldPoint(Minion.transform.position), Minion.transform.rotation);
             Destroy(Minion2);
@@ -105,7 +115,7 @@ public class FriendlySpawner : MonoBehaviour, IDragHandler, IEndDragHandler
             }
             else if (MinionScript is Miner)
             {
-                Vector3Int v = Vector3Int.FloorToInt(Minion.transform.position);
+                v = Vector3Int.FloorToInt(Minion.transform.position);
                 v.z = 0;
                 tilecell = tilemap.GetTile(v);
                 Debug.Log(tilecell);

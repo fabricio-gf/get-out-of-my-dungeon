@@ -11,12 +11,14 @@ public class EnemyBehaviour : MonoBehaviour
     [SerializeField] private float speed = 1.1f;
     [SerializeField] private float hp = 100f;
     [SerializeField] private float dano = 20f;
+    [SerializeField] private int score = 10;
     [SerializeField] private GameObject PopupTextPrefab;
     private Tilemap tilemap;
     private GameObject TextObject;
     private int dir=0;
     private GameObject Canvas;
     private Text TextScript;
+    private Text ScoreText;
     private Vector3 movement;
     private bool col = false;
     private float stopTime = 1, stopTimer;
@@ -40,6 +42,7 @@ public class EnemyBehaviour : MonoBehaviour
         Canvas = GameObject.Find("/Canvas");
         TextObject = GameObject.Find("/Canvas/SideBar/Money/Text");
         TextScript = TextObject.GetComponent<Text>();
+        ScoreText = GameObject.Find("/Canvas/SideBar/Score/Text").GetComponent<Text>();
     }
 
     // Update is called once per frame
@@ -95,6 +98,7 @@ public class EnemyBehaviour : MonoBehaviour
             Destroy(gameObject);
 
             CreateFloatingText("+5", transform);
+            ScoreText.text = (int.Parse(ScoreText.text) + score).ToString();
             TextScript.text = (int.Parse(TextScript.text) + 5).ToString();
         }
     }
