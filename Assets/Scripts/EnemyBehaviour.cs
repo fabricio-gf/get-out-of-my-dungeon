@@ -135,7 +135,13 @@ public class EnemyBehaviour : MonoBehaviour
             {
                 Vector3Int v = Vector3Int.FloorToInt(gameObject.transform.position);
                 Vector3Int v2 = Vector3Int.CeilToInt(gameObject.transform.position);
-                Target = new Vector3(v.x - 1, (v.y + v2.y) / 2f, 0);
+                Vector3 check = new Vector3(v.x - 1, (v.y + v2.y) / 2f, 0);
+                tilecell = tilemap.GetTile(Vector3Int.FloorToInt(check));
+                if (tilecell && tilecell.name.StartsWith("Floor(1)_0"))
+                {
+                    SceneManager.LoadScene("GameOver");
+                }
+                Target = check;
                 _timeStartedLerping = Time.time;
                 _startPosition = transform.position;
             }
