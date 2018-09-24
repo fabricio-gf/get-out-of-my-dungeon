@@ -15,6 +15,7 @@ public class SpawnerController : MonoBehaviour
     // Use this for initialization
     void Awake()
     {
+        print("entrou");
 		timeModifier = new float[] { 6, 4, 4, 3, 3, 2, 1, -2, -1, 0, -2, 0, 4, 3, 4, -4, -4, 0 };
         int i;
 		spawnersScript = new EnemySpawner[transform.childCount];
@@ -29,8 +30,8 @@ public class SpawnerController : MonoBehaviour
     void Update()
     {
         timer += Time.deltaTime;
-        if (timer + timeModifier[modifierIndex] >= spawnTimer)
-        {
+        if (timer >= spawnTimer + timeModifier[modifierIndex])
+        {   
             spawnIndex = Mathf.FloorToInt(Random.Range(0, spawnersScript.Length));
             if (spawnersScript[spawnIndex].spawn() == true)
             {
